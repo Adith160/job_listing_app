@@ -1,8 +1,7 @@
 const express = require('express')
 const db = require('./config/DataBase')
-const app = express();
 
-//app.use(db);
+const app = express();
 
 app.get('/health', (req,res)=>{
     res.json({service:"Job Listing App",
