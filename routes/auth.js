@@ -15,9 +15,9 @@ router.post('/register', async (req,res)=>{
             })
         }
         const emailCheck = await User.findOne({ email: email });
-        const mobileCheck = await User.findOne({ mobile: mobile });
+        const phoneCheck = await User.findOne({ phone: phone });
         
-        if (emailCheck || mobileCheck) {
+        if (emailCheck || phoneCheck) {
             let errorMessage = "";
         
             if (emailCheck) {
@@ -31,7 +31,7 @@ router.post('/register', async (req,res)=>{
             });
         }
 
-        const hashedPassword = await bcrypt.has(password, 10);
+        const hashedPassword = await bcrypt.hash(password, 10);
 
         // await User.create({
         //     name,
@@ -43,18 +43,60 @@ router.post('/register', async (req,res)=>{
         const userData = new User({
             name,
             email,
-            mobile,
+            phone,
             password : hashedPassword,
         })
 
-        const userResponse = userData.save();
+        const userResponse = await userData.save();
 
         const token = await jwt.sign({ userId : userResponse._id}, process.env.JWT_SECRET)
 
         res.json({message : "User Registered Successfully", token:token, name : name, })
 
     } catch (error) {
+        console.error(error);
+        res.status(500).json({ errorMessage: "Internal Server Error" });
+    }
+    
+})
+
+router.post('/login',async (req,res)=>{
+    try {
+        const {email, password} = req.body;
+        if(!email || !password){
+            return res.status(400).json({
+                message : "Invalid Credentials", 
+            })
+        }   
+
+        const userDetail = await User.findOne({email})
         
+        if(!userDetail){
+            return res.status(401).json({
+                message : "User Not Found", 
+            })
+        }   
+
+        const matchedPassword = await bcrypt.compare(password, userDetail.password);
+
+
+        if(!matchedPassword){
+            return res.status(401).json({
+                message:"Invalid Password"
+            })
+        }
+
+        const token = await jwt.sign({userId : userDetail._id}, process.env.JWT_SECRET);
+
+        res.json({
+            message: "User Login Successfull",
+            token: token,
+            name: userDetail.name, 
+        })
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: "Internal Server Error" });
     }
 })
 
