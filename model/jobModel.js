@@ -3,7 +3,6 @@ const jobSchema = new mongoose.Schema({
     companyName: {
         type : String,
         require: true,
-        unique: true,
     },
     logoUrl: {
         type : String,
@@ -43,6 +42,10 @@ const jobSchema = new mongoose.Schema({
     },
     info: {
         type : String,
+        require: true,
+    },
+    userRefId: {
+        type : mongoose.Types.ObjectId,
         require: true,
     },
 })
