@@ -8,7 +8,7 @@ export const registerUser = async ({name,email,phone,password}) => {
         const reqUrl = `${backendUrl}/auth/register`;
         const reqPayload = {name,email,phone,password};
         const response = await axios.post(reqUrl, reqPayload)
-        console.log(response)
+        return response.data;
     } catch (error) {
          toast.error('Invalid request!');
     }
@@ -18,10 +18,12 @@ export const loginUser = async ({ email, password }) => {
     try {
         const reqUrl = `${backendUrl}/auth/login`;
         const reqPayload = { email, password };
+        debugger;
         const response = await axios.post(reqUrl, reqPayload);
-
+        
+       
         if (response.status === 201) {
-            console.log(response.data); // Log the response data if needed
+            return response.data;
         } else {
             toast.error('Invalid login credentials!');
         }

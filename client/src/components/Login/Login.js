@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styles from './Login.module.css'
 import { useNavigate } from 'react-router-dom';
+import { loginUser } from '../../api/auth'
 
 function Login() {
   const [userData, setUserData] = useState({
@@ -28,7 +29,7 @@ function Login() {
     }));
   }
 
-  const handleUserSubmit = (e) => {
+  const handleUserSubmit = async (e) => {
     e.preventDefault();
 
     // Validate form fields
@@ -55,14 +56,16 @@ function Login() {
 
     if (Object.keys(newErrors).length === 0){
      
-      // add axios here
-
+     const response = await loginUser({ ...userData })
+     if(response) {
+      localStorage.setItem("token", response.token);
+      localStorage.setItem("name", response.name)
       setUserData({ 
       email: '',
       password: '',});
       resetForm();
-      navigate("/login");
-    }
+      navigate("/");
+    }}
   }
 
   const redirectToRegister = () =>{

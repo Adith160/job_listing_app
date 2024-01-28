@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styles from './Register.module.css'
 import { useNavigate } from 'react-router-dom';
+import {registerUser} from '../../api/auth'
 
 function Register() {
   const [userData, setUserData] = useState({
@@ -34,7 +35,7 @@ function Register() {
     }));
   }
 
-  const handleUserSubmit = (e) => {
+  const handleUserSubmit = async (e) => {
     e.preventDefault();
 
     // Validate form fields
@@ -75,17 +76,19 @@ function Register() {
 
     if ((Object.keys(newErrors).length === 0) && (userData.check===true)){
      
-      // add axios here
-
-      // Additional registration logic here
-      setUserData({ name: '',
-      uName: '',
-      email: '',
-      phone: '',
-      password: '',
-      check: false,});
-      resetForm();
-      navigate("/login");
+      const response = await registerUser({ ...userData });
+      if(response){
+        localStorage.setItem("token", response.token);
+        localStorage.setItem("name", response.name)
+        setUserData({ name: '',
+        uName: '',
+        email: '',
+        phone: '',
+        password: '',
+        check: false,});
+        resetForm();
+        navigate("/login");
+      }
     }
   }
 
