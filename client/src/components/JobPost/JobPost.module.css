@@ -1,0 +1,75 @@
+body{
+    height: 100vh;
+    width: 100vh;
+}
+
+.registerContent {
+margin-left: -40vh;
+
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+    width: 170%;
+}
+
+input {
+    color: black;
+    width: 100%;
+    height: 5.5vh;
+    border-radius: 3px;
+    border: 2px solid #C2C2C2 ;
+}
+
+.check{
+    width: 30%;
+    height: 2vh;
+    margin-left: -9vh;
+    cursor: pointer;
+}
+
+label{
+    font-size: 10px;
+    color: #525252;
+}
+
+.title{
+    height: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.submitBtn {
+    width: 50%;
+    height: 15.5%;
+    background-color: #ED5353;
+    border-radius: 0.5vh;
+    border: none;
+    color: white;
+    font-family: Roboto;
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 3vh;
+    cursor: pointer;
+}
+
+.signIn {
+    border: none;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.errorText {
+    color: red;
+    font-size: 10px;
+  }
+
+  .grey{
+    color: #525252;
+  }

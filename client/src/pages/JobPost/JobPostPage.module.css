@@ -1,0 +1,42 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+}
+
+.mainContainer {
+    height: 100%;
+    width: 100%;
+    display: flex;
+}
+
+.jobPostForm {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.img {
+    height: 100%;
+    width: 40%;
+    background-size: cover;
+   position: relative;
+}
+
+.img img {
+   height: 99vh;
+   width: 100%;
+}
+
+.overlayText {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white; /* Set the color of the text */
+    font-size: 24px; /* Set the font size */
+    /* Add additional styles as needed */
+}
