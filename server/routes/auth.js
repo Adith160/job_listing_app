@@ -12,6 +12,7 @@ router.post('/register', async (req,res)=>{
         if(!name || !email || !phone || !password){
             return res.status(400).json({
                 errorMessage: "Bad Request",
+                success: false,
             })
         }
         const emailCheck = await User.findOne({ email: email });
@@ -28,6 +29,7 @@ router.post('/register', async (req,res)=>{
         
             return res.status(409).json({
                 message: errorMessage,
+                success: false,
             });
         }
 
@@ -51,11 +53,11 @@ router.post('/register', async (req,res)=>{
 
         const token = await jwt.sign({ userId : userResponse._id}, process.env.JWT_SECRET)
 
-        res.json({message : "User Registered Successfully", token:token, name : name, })
+        res.json({message : "User Registered Successfully", token:token, name : name, success: true,})
 
     } catch (error) {
         console.error(error);
-        res.status(500).json({ errorMessage: "Internal Server Error" });
+        res.status(500).json({ errorMessage: "Internal Server Error" ,success: false,});
     }
     
 })
@@ -66,6 +68,7 @@ router.post('/login',async (req,res)=>{
         if(!email || !password){
             return res.status(400).json({
                 message : "Invalid Credentials", 
+                success: false,
             })
         }   
 
@@ -74,6 +77,7 @@ router.post('/login',async (req,res)=>{
         if(!userDetail){
             return res.status(401).json({
                 message : "User Not Found", 
+                success: false,
             })
         }   
 
@@ -82,21 +86,23 @@ router.post('/login',async (req,res)=>{
 
         if(!matchedPassword){
             return res.status(401).json({
-                message:"Invalid Password"
+                message:"Invalid Password",
+                success: false,
             })
         }
 
         const token = await jwt.sign({userId : userDetail._id}, process.env.JWT_SECRET);
 
-        res.json({
+        res.status(201).json({
             message: "User Login Successfull",
             token: token,
             name: userDetail.name, 
+            success: true,
         })
 
     } catch (error) {
         console.log(error);
-        res.status(500).json({ message: "Internal Server Error" });
+        res.status(500).json({ message: "Internal Server Error" , success: false,});
     }
 })
 

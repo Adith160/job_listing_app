@@ -2,11 +2,13 @@ const express = require('express')
 const db = require('./config/DataBase')
 const authRouter = require('./routes/auth')
 const jobRouter = require('./routes/job')
+const cors = require('cors')
 
 const app = express();
 
 //call bodyParser
 app.use(express.json())
+app.use(cors())
 
 app.get('/health', (req,res)=>{
     res.json({service:"Job Listing App",

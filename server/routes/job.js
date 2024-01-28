@@ -11,16 +11,16 @@ router.post('/jobs', verifyJwt, async (req,res) => {
 
         // Check if validation passed
         if (validationResult.error) {
-            return res.status(400).json({ error: validationResult.error.message });
+            return res.status(400).json({ error: validationResult.error.message , success: false,});
         }
 
         const newJob = new Job(req.body);
         await newJob.save();
 
-        res.status(201).json({message : "Job Created Successfully"});
+        res.status(201).json({message : "Job Created Successfully", success: true,});
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: 'Internal Server Error' });
+        res.status(500).json({ error: 'Internal Server Error' , success: false,});
     }
 });
 
@@ -32,7 +32,7 @@ router.put('/edit/:jobId', verifyJwt, async (req,res) => {
 
         // Check if validation passed
         if (validationResult.error) {
-            return res.status(400).json({ error: validationResult.error.message });
+            return res.status(400).json({ error: validationResult.error.message , success: false,});
         }
         let jobId = req.params.jobId 
         let newData = req.body;
@@ -40,10 +40,29 @@ router.put('/edit/:jobId', verifyJwt, async (req,res) => {
             $set : newData,
         })
 
-        res.status(201).json({message : "Job Updated Successfully"});
+        res.status(201).json({message : "Job Updated Successfully", success: true,});
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: 'Internal Server Error' });
+        res.status(500).json({ error: 'Internal Server Error' , success: false,});
+    }
+});
+
+router.delete('/delete/:jobId', verifyJwt, async (req,res) => {
+    try {
+        // Validate the request body using Joe
+        const validationResult = jobValidation.validate(req.body);
+
+        // Check if validation passed
+        if (validationResult.error) {
+            return res.status(400).json({ error: validationResult.error.message , success: false,});
+        }
+        let jobId = req.params.jobId 
+        await Job.findByIdAndDelete({ _id : jobId})
+
+        res.status(201).json({message : "Job Deleted Successfully", success: true,});
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' , success: false,});
     }
 });
 
@@ -52,20 +71,20 @@ router.get('/findOne/:jobId', async (req, res) => {
         let jobId = req.params.jobId;
         
         if (!jobId) {
-            return res.status(400).json({ errorMessage: "Required Job Id " });
+            return res.status(400).json({ errorMessage: "Required Job Id " , success: false,});
         }
 
         //send data without id , 1 if needed & 0 if not needed
         const jobData = await Job.findById(jobId);
 
         if (!jobData) {
-            return res.status(404).json({ message: "Job not found" });
+            return res.status(404).json({ message: "Job not found" , success: false,});
         }
 
-        res.status(200).json({ data: jobData });
+        res.status(200).json({ data: jobData , success: true,});
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: 'Internal Server Error' });
+        res.status(500).json({ error: 'Internal Server Error' , success: false,});
     }
 });
 
@@ -88,13 +107,13 @@ router.get('/all', async (req, res) => {
         const jobData = await Job.find(filter, { _id: 1, companyName: 1 });
 
         if (!jobData || jobData.length === 0) {
-            return res.status(404).json({ message: "Job not found" });
+            return res.status(404).json({ message: "Job not found" , success: false,});
         }
 
-        res.status(200).json({ data: jobData });
+        res.status(200).json({ data: jobData , success: true,});
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: 'Internal Server Error' });
+        res.status(500).json({ error: 'Internal Server Error' , success: false,});
     }
 });
 
