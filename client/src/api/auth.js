@@ -1,6 +1,5 @@
 import axios from 'axios';
 import {toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
 export const registerUser = async ({name,email,phone,password}) => {

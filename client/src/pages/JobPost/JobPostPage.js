@@ -1,15 +1,15 @@
 import React from 'react';
-import Register from '../../components/JobPost/JobPost';
+import JobPost from '../../components/JobPost/JobPost';
 import styles from './JobPostPage.module.css';
 import jobImg from '../../assets/images/jobPost.png';
 
 function JobPostPage() {
   return (
     <div className={styles.mainContainer}>
-      <div className={styles.jobPostForm}>
-        <Register />
+      <div className={styles.halfDiv1}>
+        <JobPost />
       </div>
-      <div className={styles.img}>
+      <div className={styles.halfDiv2}>
         <img src={jobImg} alt="JobPost" />
         <span className={styles.overlayText}>Recruiter add job details here</span>
       </div>

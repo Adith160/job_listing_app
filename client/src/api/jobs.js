@@ -3,17 +3,45 @@ import {toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
-export const postJob = async ({name,email,phone,password}) => {
+export const postJob = async ({
+    companyName,
+    logoUrl,
+    position,
+    salary,
+    jobType,
+    remote,
+    location,
+    desc,
+    about,
+    skills,  // Assuming skills is an array
+    info
+}) => {
     try {
         const reqUrl = `${backendUrl}/job/jobs`;
-        const reqPayload = {name,email,phone,password};
-        const response 
-        = await axios.post(reqUrl, reqPayload)
-        console.log(response)
+        // Ensure skills is an array
+        const skillsArray = Array.isArray(skills) ? skills : [skills];
+        const reqPayload = {
+            companyName,
+            logoUrl,
+            position,
+            salary,
+            jobType,
+            remote,
+            location,
+            desc,
+            about,
+            skills: skillsArray,  // Send skills as an array
+            info
+        };
+        const token = localStorage.getItem("token");
+        axios.defaults.headers.common["Authorization"] = token;
+        const response = await axios.post(reqUrl, reqPayload);
+        return response;
     } catch (error) {
-         toast.error('Invalid request!');
+        toast.error('Invalid request!');
     }
 };
+
 
 export const editJob = async ({jobId}) => {
     try {
