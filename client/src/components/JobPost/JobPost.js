@@ -115,7 +115,7 @@ function JobPost() {
         console.log("success");
       }
       resetForm();
-      // navigate("/job-details");
+      navigate("/job-edit");
     }
 };
 

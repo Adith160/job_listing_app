@@ -1,0 +1,23 @@
+.mainContainer{
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+.compName{
+    width: 70%;
+    height: 100%;
+    z-index: 1;
+    background-color: white;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: -1% 15% 0 15%;
+}
+
+h2{
+    margin: 0 10% 0 10%;
+    text-align: center;
+}
+

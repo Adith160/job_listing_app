@@ -1,0 +1,57 @@
+.headerDiv{
+    height: 11vh;
+    width: 100%;
+    border-radius: 0vh 0vh 3vh 3vh;
+    background-color: #ED5353;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+    z-index: -10;
+}
+
+h3, .rightComp{
+    margin: 0% 5% 0% 5%;
+    color: white;
+}
+
+.rightComp{
+    display: flex;
+    width: 15%;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.logBtn {
+    width: 45%;
+    height: 5vh;
+    border: 1px solid wheat;
+    background: none;
+    color: white;
+    border-radius: 1vh;
+    cursor: pointer; /* Cursor set to pointer */
+}
+
+.logBtn:hover {
+    background-color: white;
+    color: black;
+}
+img {
+    height: auto; 
+    width: auto; 
+    max-height: 4vh;
+    max-width: 4vh; 
+    border-radius: 50%;
+    margin-left: 3%;
+}
+
+
+
+.noBorder{
+    border: none;
+    width: 45%;
+    height: 5vh;
+    background: none;
+    color: white;
+    cursor: pointer;
+}
