@@ -2,7 +2,7 @@ import styles from './Header.module.css';
 import logo from '../../assets/icons/encrypted.svg';
 
 function Header() {
-  const signed = true;
+  const signed = false;
   return (
     <div className={styles.headerDiv}>
       <h3>Jobfinder</h3>

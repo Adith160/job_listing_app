@@ -7,8 +7,9 @@ function JobEdit() {
     <div className={styles.mainContainer}>
           <Header />  
           <div className={styles.compName}> <h2>WordPress Development work from home job/internship at Adyaka Infosec Private Limited</h2></div>
+          
           <div className={styles.jobContainer}>
-              fhfj
+             a
           </div>
     </div>
   )
