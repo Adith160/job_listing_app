@@ -29,7 +29,7 @@ h3, .rightComp{
     background: none;
     color: white;
     border-radius: 1vh;
-    cursor: pointer;/* Cursor set to pointer */
+    cursor: pointer;
 }
 
 .logBtn:hover {

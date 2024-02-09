@@ -25,15 +25,104 @@
 }
 
 .jobContainer{
-    margin-top: 2%;
-    height: 77vh;
+    margin-top: 1%;
+    padding: 4%;
+    height: 60vh;
     width: 80%;
     background-color: white;
     overflow-y: scroll;
     box-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
     display: flex;
     flex-direction: column;
-    align-items: center;
+}
+
+.jobContainer h4{
+  font-size: larger;
+}
+
+.jobContainer p {
+  color: #999999;
+  font-size: large;
+}
+
+.part1{
+  color: #999999;
+  font-size: medium;
+  word-spacing: 1%;
+}
+
+.span1{
+  display: flex;
+  align-items: center;
+}
+
+.part2{
+  margin-top: 2%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.editBtn{
+  width: 12%;
+  height: 6vh;
+  background-color: #ED5353;
+  color: white;
+  border-radius: 1vh;
+  cursor: pointer;
+  border: none;
+}
+
+.part3 p{
+font-size: medium;
+}
+
+.redFont{
+  color: #ED5353;
+  font-size: large;
+  margin-bottom: 2%;
+}
+
+.stipSpan{
+  display: flex;
+  justify-content: space-between;
+  width: 25%;
+}
+
+.stipend{
+  color: #999999;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  font-size: medium;
+}
+
+.stipSpan img{
+  height: 30%;
+  margin-left: -4%;
+}
+
+.part4{
+  margin-top: 2%;
+}
+
+.part5{
+  margin-top: 2%;
+  width: 30%;
+}
+
+.skillDiv{
+  display: flex;
+  justify-content: space-between;
+}
+
+.part5 label{
+  border: 1px solid black;
+  width: fit-content;
+  padding: 1% 5%;
+  font-size: small;
+  border-radius: 2vh;
+  background-color: #FFEFEF;
+  border: none;
 }
 
 
