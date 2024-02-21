@@ -78,13 +78,12 @@ export const getAllJobs = async ({ title, skills }) => {
     }
 };
 
-export const getOneJob = async ({ jobId }) => {
+export const getOneJob = async ( jobId ) => {
     try {
         const reqUrl = `${backendUrl}/job/findOne/${jobId}`;
         const response = await axios.get(reqUrl);
-
-        if (response.status === 201) {
-            console.log(response.data); // Log the response data if needed
+        if (response.status === 200) {
+            return response.data?.data; // Log the response data if needed
         } else {
             toast.error('Job Not Found!');
         }

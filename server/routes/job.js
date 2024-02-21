@@ -81,7 +81,7 @@ router.get('/findOne/:jobId', async (req, res) => {
             return res.status(404).json({ message: "Job not found" , success: false,});
         }
 
-        res.status(200).json({ data: jobData , success: true,});
+        res.status(201).json({ data: jobData , success: true,});
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Internal Server Error' , success: false,});
@@ -110,7 +110,7 @@ router.get('/all', async (req, res) => {
             return res.status(404).json({ message: "Job not found" , success: false,});
         }
 
-        res.status(200).json({ data: jobData , success: true,});
+        res.status(201).json({ data: jobData , success: true,});
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Internal Server Error' , success: false,});
